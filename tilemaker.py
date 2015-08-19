@@ -1,7 +1,5 @@
-#!/usr/bin/python
-
+import sys,random
 from PIL import ImageFont, ImageDraw, Image
-from random import randint
 import cPickle as pickle
 
 def maketile(txt="TEST",
@@ -40,3 +38,10 @@ def maketile(txt="TEST",
         draw.text((0,(y + 1)*i),line[dir*i:]+line[:dir*i],tcol,font=font)
 
     img.save(outfile)
+
+if __name__ == '__main__':
+   if len(sys.argv) == 1:
+        print("Usage: dtdelta DATE2 [Optional DATE1 - now if not provided]")
+   else:
+        maketile(*sys.argv[1:])
+
