@@ -15,12 +15,20 @@ import cPickle as pickle
 def maketile(txt,size,font,tcol,bcol,col,palette,direction,outfile):
 
     if col:
-        palette = random.randint(0,len(pickle.load(open('colors.p'))))
+        try:
+            palette = random.randint(0,len(pickle.load(open('colors.p'))))
+        except:
+            print "no color themes found"
+            palette = None
 
     if palette:
-        print("Using theme {}".format(palette))
-        theme = {i:j for i,j in enumerate(pickle.load(open('colors.p')))}[int(palette)]
-        bcol = theme[0]
+        try:
+            print("Using theme {}".format(palette))
+            theme = {i:j for i,j in enumerate(pickle.load(open('colors.p')))}[int(palette)]
+            bcol = theme[0]
+        except:
+            print "no color themes found"
+            palette = None
 
     txtlength = len(txt)+1
 
